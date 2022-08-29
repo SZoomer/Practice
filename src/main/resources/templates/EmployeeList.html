@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>list</title>
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+
+</head>
+<body>
+<div th:insert="header.html"></div>
+<br>
+
+	<table id="empTable">
+		<thead>
+			<tr>
+				<td>Name</td>
+				<td>Post</td>
+				<td>Salary</td>
+				<td>City</td>
+				<td>State</td>
+				<td>Action</td>
+			</tr>
+		</thead>
+
+
+		<tbody>
+		
+		    <tr th:each="emp : ${emplist}" >
+		    
+				<td>[[${emp.fname} +' '+${emp.lname}]] </td>
+				<td>[[${emp.post}]]</td>
+				<td>[[${emp.salary}]]</td>
+				<td>[[${emp.address.city}]]</td>
+				<td>[[${emp.address.state}]]</td>
+				<td>
+   				   <a th:href="@{edit(id=${emp.id})}"> <input type="submit"  class="btn btn-success" value="Edit">  </a>
+   				   <a th:href="@{delete(id=${emp.id})}"> <input type="submit" class="btn btn-danger" value="Delete"> </a>	
+			    </td>
+					
+			</tr>
+
+		</tbody>
+
+	</table>
+
+  <script type="text/javascript">
+  
+  $(document).ready( function () {
+	    $('#empTable').DataTable();
+	} );
+  
+  </script>
+
+
+
+
+</body>
+</html>
